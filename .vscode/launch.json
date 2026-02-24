@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-KookApplication<kook>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.alejandro.kook.KookApplication",
+            "projectName": "kook",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

@@ -1,0 +1,33 @@
+services:
+  kook:
+    container_name: kook
+    image: kook
+    ports:
+      - 8080:8080
+    depends_on:
+      - mariadb
+    environment:
+    # Aqui en vez de localhost, se pone el nombre del contenedor de la base de datos definido en docker-compose.yaml
+    # No localhost porque el contenedor de la aplicación no puede acceder a localhost del host, sino al contenedor de la base de datos
+      SPRING_DATASOURCE_URL: jdbc:mariadb://mariadb:3306/kook
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+      SPRING_DATASOURCE_DRIVER-CLASS-NAME: org.mariadb.jdbc.Driver
+  mariadb:
+    container_name: mariadb
+    image: mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: kook
+    volumes:
+      - C:\Users\aleja\Desktop\proyectoFinalOptativa\db:/var/lib/mysql
+    ports:
+      - 3306:3306
+    
+  nginx:
+    container_name: nginx
+    image: nginx:latest
+    ports:
+      - 80:80
+    volumes:
+      - C:\Users\aleja\Desktop\proyectoFinalOptativa\frontend:/usr/share/nginx/html/

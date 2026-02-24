@@ -1,0 +1,2 @@
+docker build --rm -t kook . 
+docker-compose up -d
