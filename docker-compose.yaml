@@ -20,14 +20,16 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: kook
     volumes:
-      - C:\Users\aleja\Desktop\proyectoFinalOptativa\db:/var/lib/mysql
+      - ./db:/var/lib/mysql
     ports:
-      - 3306:3306
+    # En la WSL cambio los puertos porque estan en conflicto frente a los de la WSL
+      - 3307:3306
     
   nginx:
     container_name: nginx
     image: nginx:latest
+    # En la WSL cambio los puertos porque estan en conflicto frente a los de la WSL, en este caso el 80 de Apache
     ports:
-      - 80:80
+      - 81:80
     volumes:
-      - C:\Users\aleja\Desktop\proyectoFinalOptativa\frontend:/usr/share/nginx/html/
+      - ./frontend/kook/:/usr/share/nginx/html/

@@ -1,26 +1,19 @@
 <main class="container">
-    <div class="row">
+    <div class="row my-4">
         <h1>Mis recetas</h1>
         <p>Explora tus recetas guardadas en, ya sean tuyas o recomendadas por KookIA.</p>
     </div>
     <div class="row">
-        <div class="col">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Receta 1</h5>
-                    <p class="card-text">Descripción de la receta 1.</p>
-                    <a href="#" class="btn btn-primary">Ver receta</a>
+        @for (receta of recetas; track $index) {
+            <div class="col-lg-3 col-md-4 col-6 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{receta.titulo}}</h5>
+                        <p class="card-text">{{receta.descripcion}}</p>
+                        <a href="#" class="btn btn-primary">Ver receta</a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Receta 2</h5>
-                    <p class="card-text">Descripción de la receta 2.</p>
-                    <a href="#" class="btn btn-primary">Ver receta</a>
-                </div>
-            </div>
-        </div>
+        }
     </div>
 </main>
