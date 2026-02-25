@@ -14,5 +14,6 @@ public class RecetaDTO {
     private String titulo;
     private String descripcion;
     private String instrucciones;
-    private LocalDate fecha;
+    private String imagenUrl;
+    private LocalDate fecha = LocalDate.now();
 }

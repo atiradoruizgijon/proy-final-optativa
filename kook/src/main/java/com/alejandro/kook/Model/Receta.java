@@ -21,5 +21,6 @@ public class Receta {
     private String titulo;
     private String descripcion;
     private String instrucciones;
+    private String imagenUrl;
     private LocalDate fecha = LocalDate.now();
 }

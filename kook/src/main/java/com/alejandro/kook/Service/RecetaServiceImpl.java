@@ -13,7 +13,7 @@ public class RecetaServiceImpl implements RecetaService {
 
     private final RecetaRepository recetaRepository;
 
-    public RecetaServiceImpl(RecetaRepository recetaRepository) {
+    public RecetaServiceImpl(RecetaRepository recetaRepository, ImagenService imagenService) {
         // TODO Auto-generated constructor stub
         this.recetaRepository = recetaRepository;
     }
@@ -22,10 +22,13 @@ public class RecetaServiceImpl implements RecetaService {
     public void crearReceta(RecetaDTO recetaDTO) {
         // TODO Auto-generated method stub
         Receta nuevaReceta = new Receta();
+
         nuevaReceta.setTitulo(recetaDTO.getTitulo());
         nuevaReceta.setDescripcion(recetaDTO.getDescripcion());
         nuevaReceta.setInstrucciones(recetaDTO.getInstrucciones());
         nuevaReceta.setFecha(recetaDTO.getFecha());
+        nuevaReceta.setImagenUrl(recetaDTO.getImagenUrl());
+
         recetaRepository.save(nuevaReceta);
     }
 
@@ -46,5 +49,4 @@ public class RecetaServiceImpl implements RecetaService {
         // TODO Auto-generated method stub
         return recetaRepository.findAll();
     }
-    
 }

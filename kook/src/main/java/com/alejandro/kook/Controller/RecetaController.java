@@ -2,15 +2,22 @@ package com.alejandro.kook.Controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.alejandro.kook.Dto.ImagenUploadDTO;
+import com.alejandro.kook.Dto.RecetaDTO;
 import com.alejandro.kook.Model.Receta;
 import com.alejandro.kook.Service.RecetaServiceImpl;
 
 import java.util.List;
 
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 @CrossOrigin("*") // Permitir solicitudes desde cualquier origen
@@ -36,5 +43,11 @@ public class RecetaController {
         return recetaService.encontrarReceta(id);
     }
     
+    @PostMapping("/crear-receta") 
+    public Receta crearReceta(@RequestBody RecetaDTO recetaDTO) {
+        recetaService.crearReceta(recetaDTO);
+        // muestro la receta recién creada para confirmar que se ha creado correctamente
+        return recetaService.encontrarReceta(recetaDTO.getId());
+    }
     
 }
