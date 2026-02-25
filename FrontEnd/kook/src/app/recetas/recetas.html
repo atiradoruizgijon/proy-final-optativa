@@ -4,16 +4,15 @@
         <p>Explora tus recetas guardadas en, ya sean tuyas o recomendadas por KookIA.</p>
     </div>
     <div class="row">
-        @for (receta of recetas; track $index) {
-            <div class="col-lg-3 col-md-4 col-6 mb-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">{{receta.titulo}}</h5>
-                        <p class="card-text">{{receta.descripcion}}</p>
-                        <a href="#" class="btn btn-primary">Ver receta</a>
-                    </div>
+        <div class="col-lg-3 col-md-4 col-6 mb-3" *ngFor="let receta of (recetas | async);">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ receta.titulo }}</h5>
+                    <p class="card-text">{{ receta.descripcion }}</p>
+                    <p class="card-text">{{ receta.fecha }}</p>
+                    <a routerLink="/receta/{{ receta.id }}" class="btn btn-success">Ver receta</a>
                 </div>
             </div>
-        }
+        </div>
     </div>
 </main>

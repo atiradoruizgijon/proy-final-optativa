@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { RecetaService } from '../receta-service';
+import { recetaInterface } from '../receta-interface';
 
 @Component({
   selector: 'app-recetas',
@@ -6,35 +8,11 @@ import { Component } from '@angular/core';
   templateUrl: './recetas.html',
   styleUrl: './recetas.css',
 })
-export class Recetas {
-  recetas = [
-    {
-      titulo: "Espaguetis a la carbonara",
-      descripcion: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt adipisci quae quas? NSunt adipisci quae quas? Nam, id. Corporis necessitatibus earum vero possimus adSunt adipisci quae quas? Nam, id. Corporis necessitatibus earum vero possimus adSunt adipisci quae quas? Nam, id. Corporis necessitatibus earum vero possimus adam, id. Corporis necessitatibus earum vero possimus ad."
-    },
-    {
-      titulo: "Espaguetis con tomate",
-      descripcion: "Lorem ipsum dolor sit ameSunt adipisci quae quas? Nam, id. Corporis necessitatibus earum vero possimus adSunt adipisci quae quas? Nam, id. Corporis necessitatibus earum vero possimus adt consectetur adipisicing elit. Sunt adipisci quae quas? Nam, id. Corporis necessitatibus earum vero possimus ad."
-    },
-    {
-      titulo: "Espaguetis a la carbonara",
-      descripcion: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt adipisci quae quas? Nam, id. Corporis necessitatibus earum vero possimus ad."
-    },
-    {
-      titulo: "Espaguetis con tomate",
-      descripcion: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt adipisci quae quas? Nam, id. Corporis necessitatibus earum vero possimus ad."
-    },
-    {
-      titulo: "Espaguetis a la carbonara",
-      descripcion: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt adipisci quae quas? Nam, id. Corporis necessitatibus earum vero possimus ad.Sunt adipisci quae quas? Nam, id. Corporis necessitatibus earum vero possimus adSunt adipisci quae quas? Nam, id. Corporis necessitatibus earum vero possimus ad"
-    },
-    {
-      titulo: "Espaguetis con tomate",
-      descripcion: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt adipisci quae quas? Nam, id. Corporis necessitatibus earum vero possimus ad."
-    },
-    {
-      titulo: "Espaguetis a la carbonara",
-      descripcion: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt adipisci quae quas? Nam, id. Corporis necessitatibus earum vero possimus ad."
-    }
-  ];
+export class Recetas implements OnInit {
+  recetas: any = [];
+
+  constructor(private recetaService: RecetaService) {}
+  ngOnInit(): void {
+    this.recetas = this.recetaService.rescatarRecetas();
+  }
 }
