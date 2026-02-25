@@ -23,7 +23,8 @@ public class RecetaServiceImpl implements RecetaService {
         // TODO Auto-generated method stub
         Receta nuevaReceta = new Receta();
         nuevaReceta.setTitulo(recetaDTO.getTitulo());
-        nuevaReceta.setTexto(recetaDTO.getTexto());
+        nuevaReceta.setDescripcion(recetaDTO.getDescripcion());
+        nuevaReceta.setInstrucciones(recetaDTO.getInstrucciones());
         nuevaReceta.setFecha(recetaDTO.getFecha());
         recetaRepository.save(nuevaReceta);
     }

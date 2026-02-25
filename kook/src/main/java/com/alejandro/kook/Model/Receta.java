@@ -19,6 +19,7 @@ public class Receta {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String titulo;
-    private String texto;
+    private String descripcion;
+    private String instrucciones;
     private LocalDate fecha = LocalDate.now();
 }

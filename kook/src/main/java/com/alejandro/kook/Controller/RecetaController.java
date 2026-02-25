@@ -10,6 +10,8 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @CrossOrigin("*") // Permitir solicitudes desde cualquier origen
 @RestController
@@ -28,5 +30,11 @@ public class RecetaController {
         System.out.println("Obteniendo recetas...");
         return recetaService.getRecetas();
     }
+
+    @GetMapping("/id")
+    public Receta getRecetaPorId(@RequestParam Long id) {
+        return recetaService.encontrarReceta(id);
+    }
+    
     
 }

@@ -23,13 +23,13 @@ services:
       - ./db:/var/lib/mysql
     ports:
     # En la WSL cambio los puertos porque estan en conflicto frente a los de la WSL
-      - 3307:3306
+      - 3306:3306
     
   nginx:
     container_name: nginx
     image: nginx:latest
     # En la WSL cambio los puertos porque estan en conflicto frente a los de la WSL, en este caso el 80 de Apache
     ports:
-      - 81:80
+      - 80:80
     volumes:
-      - ./frontend/kook/:/usr/share/nginx/html/
+      - ./Frontend/kook/:/usr/share/nginx/html/

@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 public class RecetaDTO {
     private Long id;
     private String titulo;
-    private String texto;
+    private String descripcion;
+    private String instrucciones;
     private LocalDate fecha;
 }

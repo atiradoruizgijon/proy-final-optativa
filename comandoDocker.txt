@@ -1,2 +1,5 @@
 docker build --rm -t kook . 
 docker-compose up -d
+
+Comando build de Angular:
+ng build --base-href=/soldadoj/angularya/proyecto018/
