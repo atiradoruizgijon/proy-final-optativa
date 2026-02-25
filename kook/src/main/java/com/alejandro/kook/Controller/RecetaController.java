@@ -2,16 +2,13 @@ package com.alejandro.kook.Controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
-import com.alejandro.kook.Dto.ImagenUploadDTO;
 import com.alejandro.kook.Dto.RecetaDTO;
 import com.alejandro.kook.Model.Receta;
 import com.alejandro.kook.Service.RecetaServiceImpl;
 
 import java.util.List;
 
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;

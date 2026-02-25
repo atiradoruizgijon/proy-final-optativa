@@ -1,5 +1,6 @@
 package com.alejandro.kook.Service;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,18 @@ public class ImagenServiceImpl implements ImagenService {
             e.printStackTrace();
             return ResponseEntity.status(500).build();
         }
+    }
+
+    @Override
+    public Imagen encontrarImagen(Long id) {
+        // TODO Auto-generated method stub
+        return imageRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public List<Imagen> encontrarImagenesPorIdUsuario(Long idUsuario) {
+        // TODO Auto-generated method stub
+        return imageRepository.findByUsersId(idUsuario);
     }
     
 }

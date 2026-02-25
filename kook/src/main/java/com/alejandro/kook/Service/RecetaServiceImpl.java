@@ -49,4 +49,18 @@ public class RecetaServiceImpl implements RecetaService {
         // TODO Auto-generated method stub
         return recetaRepository.findAll();
     }
+
+    @Override
+    public void actualizarReceta(Long id, RecetaDTO recetaDTO) {
+        // TODO Auto-generated method stub
+        Receta recetaExistente = recetaRepository.findById(id).orElse(null);
+        if (recetaExistente != null) {
+            recetaExistente.setTitulo(recetaDTO.getTitulo());
+            recetaExistente.setDescripcion(recetaDTO.getDescripcion());
+            recetaExistente.setInstrucciones(recetaDTO.getInstrucciones());
+            recetaExistente.setFecha(recetaDTO.getFecha());
+            recetaExistente.setImagenUrl(recetaDTO.getImagenUrl());
+            recetaRepository.save(recetaExistente);
+        }
+    }
 }
