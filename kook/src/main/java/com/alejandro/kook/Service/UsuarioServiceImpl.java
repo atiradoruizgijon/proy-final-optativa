@@ -33,7 +33,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         // TODO Auto-generated method stub
         Usuario user = new Usuario(null, 
             usuarioDTO.getUsername(),
-            this.passwordEncoder.encode(usuarioDTO.getPassword()),
+            this.passwordEncoder.encode(usuarioDTO.getPassword1()),
             usuarioDTO.getEmail(),
             List.of(UserAuthority.READ)
         );

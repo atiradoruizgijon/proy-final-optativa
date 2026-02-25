@@ -31,10 +31,10 @@ public class Usuario implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String username;
+    private String password;
 
     @Column(unique = true)
     private String email;
-    private String password;
     
     // le decimos a JPA que esta lista de roles o permisos se guarde en una tabla separada, y que se cargue de forma eager (inmediata) cuando se cargue el usuario
     @ElementCollection(fetch = FetchType.EAGER)

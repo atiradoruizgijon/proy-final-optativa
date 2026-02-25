@@ -32,4 +32,6 @@ build/
 ### VS Code ###
 .vscode/
 
+./db/ib_logfile0
+
 *.env
