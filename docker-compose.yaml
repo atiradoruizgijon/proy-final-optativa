@@ -29,3 +29,5 @@ services:
     # En la WSL cambio los puertos porque estan en conflicto frente a los de la WSL, en este caso el 80 de Apache
     ports:
       - 80:80
+    volumes:
+      - ./Frontend/kook/dist/kook/browser/:/usr/share/nginx/html/
