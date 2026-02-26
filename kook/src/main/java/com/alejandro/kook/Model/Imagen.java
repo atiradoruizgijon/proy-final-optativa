@@ -24,6 +24,6 @@ public class Imagen {
     private String url;
     private String publicId;
 
-    @ManyToMany(mappedBy = "imagen")
+    @ManyToMany(mappedBy = "imagenes")
     private Set<Usuario> users = new HashSet<>();
 }

@@ -1,18 +1,105 @@
 <main class="container">
+    <!-- mensajes -->
+    <div class="row my-3" *ngIf="errorMsg.length > 0">
+        <div class="alert alert-danger w-100" role="alert">
+            {{ errorMsg }}
+        </div>
+    </div>
+    <div class="row my-3" *ngIf="successMsg.length > 0">
+        <div class="alert alert-success w-100" role="alert">
+            {{ successMsg }}
+        </div>
+    </div>
+
+    <!-- Header -->
     <div class="row my-4">
         <h1>Mis recetas</h1>
-        <p>Explora tus recetas guardadas en, ya sean tuyas o recomendadas por KookIA.</p>
+        <p>Explora tus recetas guardadas, ya sean tuyas o recomendadas por KookIA.</p>
+        <button (click)="toggleCreateForm()" class="btn btn-primary w-auto">
+            {{ showCreateForm ? 'Cancelar' : 'Guardar una receta' }}
+        </button>
     </div>
+
+    <!-- crear receta form -->
+    <div class="row my-4" *ngIf="showCreateForm">
+        <div class="col-lg-8 m-auto">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Crear Nueva Receta</h4>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="formReceta">
+                        <div class="mb-3">
+                            <label for="titulo" class="form-label">Título:</label>
+                            <input formControlName="titulo" type="text" class="form-control"
+                                   id="titulo" placeholder="Nombre de la receta">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="descripcion" class="form-label">Descripción:</label>
+                            <textarea formControlName="descripcion" class="form-control"
+                                      id="descripcion" rows="3" placeholder="Describe brevemente tu receta"></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="instrucciones" class="form-label">Instrucciones:</label>
+                            <textarea formControlName="instrucciones" class="form-control"
+                                      id="instrucciones" rows="4" placeholder="Pasos para preparar la receta"></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="imagen" class="form-label">Foto de la Receta:</label>
+                            <input type="file" class="form-control" id="imagen"
+                                   accept="image/*" (change)="onFileSelected($event)" [disabled]="isUploadingImage">
+                            <small class="form-text text-muted" *ngIf="!selectedImageName">
+                                Selecciona una imagen de tu receta
+                            </small>
+                            <small class="form-text text-success" *ngIf="selectedImageName && !isUploadingImage">
+                                ✓ {{ selectedImageName }}
+                            </small>
+                            <small class="form-text text-info" *ngIf="isUploadingImage">
+                                Cargando imagen...
+                            </small>
+                        </div>
+
+                        <div class="row gap-2">
+                            <button type="button" (click)="crearReceta()" class="btn btn-success w-auto"
+                                    [disabled]="isUploadingImage">
+                                Crear Receta
+                            </button>
+                            <button type="button" (click)="toggleCreateForm()" class="btn btn-secondary w-auto">
+                                Cancelar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lista de recetas -->
     <div class="row">
-        <div class="col-lg-3 col-md-4 col-6 mb-3" *ngFor="let receta of (recetas | async);">
+        <!-- Comienzo ngFor para mostrar recetas -->
+        <div class="col-lg-3 col-md-4 col-6 mb-3" *ngFor="let receta of recetas;">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">{{ receta.titulo }}</h5>
+                    <img class="img-fluid w-100 rounded mb-2" src="{{receta.imagenUrl}}" alt="{{ receta.titulo }}"
+                         style="height: 150px; object-fit: cover;">
                     <p class="card-text">{{ receta.descripcion }}</p>
-                    <p class="card-text">{{ receta.fecha }}</p>
-                    <a routerLink="/receta/{{ receta.id }}" class="btn btn-success">Ver receta</a>
+                    <p class="card-text"><small class="text-muted">{{ receta.fecha }}</small></p>
+                    <div class="d-flex gap-2">
+                        <a routerLink="/receta/{{ receta.id }}" class="btn btn-success btn-sm flex-grow-1">Ver receta</a>
+                        <button (click)="eliminarReceta(receta.id)" class="btn btn-danger btn-sm">
+                            Eliminar
+                        </button>
+                    </div>
                 </div>
             </div>
+        </div>
+        <!-- Fin ngFor para mostrar recetas -->
+        <div *ngIf="recetas.length < 1" class="w-100">
+            <h4>No tienes ninguna receta guardada ahora mismo</h4>
         </div>
     </div>
 </main>

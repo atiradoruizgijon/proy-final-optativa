@@ -1,0 +1,18 @@
+<main class="container justify-content-center align-items-center row m-auto mt-5">
+    <h3 class="bg-danger text-light rounded-2 p-3 text-center w-50" *ngIf="errorMsg.length > 0">{{errorMsg}}</h3>
+    <form [formGroup]="formLogin" (ngSubmit)="submit()" class="col-lg-5">
+        <h1 class="mb-3">Inicia Sesión</h1>
+        <div class="mb-3">
+            <label for="username" class="form-label">Nombre de usuario:</label>
+            <input formControlName="username" type="text" class="form-control" id="username" placeholder="Nombre de usuario">
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Contraseña:</label>
+            <input formControlName="password" type="password" class="form-control" id="password" placeholder="Contraseña">
+        </div>
+        <div class="row justify-content-center gap-2">
+            <input type="submit" class="btn btn-success" value="Iniciar Sesión">
+            <a routerLink="/register">Registrarse</a>
+        </div>
+    </form>
+</main>

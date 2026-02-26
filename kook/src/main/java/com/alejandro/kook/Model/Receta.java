@@ -2,6 +2,7 @@ package com.alejandro.kook.Model;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,6 +21,7 @@ public class Receta {
     private Long id;
     private String titulo;
     private String descripcion;
+    @Column(columnDefinition = "TEXT")
     private String instrucciones;
     private String imagenUrl;
     private LocalDate fecha = LocalDate.now();

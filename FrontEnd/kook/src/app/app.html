@@ -1,6 +1,6 @@
-<header class="bg-success p-3">
-    <div class="container">
-        <div class="row row-cols-2 align-items-center">
+<header class="bg-success p-3" *ngIf="!isLoginOrRegister">
+    <div>
+        <div class="row row-cols-3 align-items-center justify-content-around">
             <h1 class="text-white text-center p-2">KookIA</h1>
             <nav class="navbar justify-content-center gap-3">
                 <a routerLink="inicio" class="btn btn-outline-light fs-4">Inicio</a>
@@ -8,10 +8,16 @@
                 <a routerLink="kookia" class="btn btn-outline-light fs-4">KookIA</a>
                 <a routerLink="planificacion" class="btn btn-outline-light fs-4">Planificación</a>
             </nav>
+            <nav class="navbar justify-content-center gap-3">
+                <span class="text-white" *ngIf="isLoggedIn">{{ username }}</span>
+                <button (click)="logout()" class="btn btn-outline-light" *ngIf="isLoggedIn">Cerrar Sesión</button>
+                <a class="text-white fs-5" routerLink="login" *ngIf="!isLoggedIn">Iniciar Sesión</a>
+                <a class="text-white fs-5" routerLink="register" *ngIf="!isLoggedIn">Registrarse</a>
+            </nav>
         </div>
     </div>
 </header>
 <router-outlet></router-outlet>
-<footer class="bg-success text-center text-white p-3 mt-4 fixed-bottom">
+<footer class="bg-success text-center text-white p-3 mt-4 fixed-bottom" *ngIf="!isLoginOrRegister">
     <p>&copy; 2026 KookIA. Todos los derechos reservados.</p>
 </footer>

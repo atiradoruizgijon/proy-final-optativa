@@ -1,0 +1,111 @@
+<main class="container my-4">
+    <!-- mensaje de error -->
+    <div class="alert alert-danger" role="alert" *ngIf="errorMsg">
+        {{ errorMsg }}
+    </div>
+
+    <!-- mensaje de éxito -->
+    <div class="alert alert-success" role="alert" *ngIf="successMsg">
+        {{ successMsg }}
+    </div>
+
+    <!-- detalles de receta (modo lectura) -->
+    <div *ngIf="receta && !isEditing" class="row">
+        <!-- imagen lado izquiero -->
+        <div class="col-lg-5">
+            <img [src]="receta.imagenUrl" [alt]="receta.titulo" class="img-fluid rounded mb-3">
+        </div>
+
+        <!-- contenido -->
+        <div class="col-lg-7">
+            <!-- Header -->
+            <div class="mb-4">
+                <h1>{{ receta.titulo }}</h1>
+                <p class="text-muted">Creado: {{ receta.fecha }}</p>
+                <p class="lead">{{ receta.descripcion }}</p>
+            </div>
+
+            <!-- instrucciones -->
+            <div class="mb-4">
+                <h3>Instrucciones</h3>
+                <p class="fs-5" style="white-space: pre-wrap;">{{ receta.instrucciones }}</p>
+            </div>
+
+            <!-- botones -->
+            <div class="d-flex gap-2">
+                <button (click)="volver()" class="btn btn-secondary">
+                    ← Volver a recetas
+                </button>
+                <button (click)="toggleEdit()" class="btn btn-primary">
+                    Editar receta
+                </button>
+                <button (click)="eliminarReceta()" class="btn btn-danger">
+                    Eliminar receta
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- formulario de edición -->
+    <div *ngIf="receta && isEditing" class="row">
+        <div class="col-lg-8 mx-auto">
+            <h2>Editar receta</h2>
+            <form [formGroup]="formReceta">
+                <div class="mb-3">
+                    <label for="titulo" class="form-label">Título</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="titulo"
+                        formControlName="titulo"
+                        placeholder="Título de la receta"
+                    >
+                </div>
+
+                <div class="mb-3">
+                    <label for="descripcion" class="form-label">Descripción</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="descripcion"
+                        formControlName="descripcion"
+                        placeholder="Descripción corta"
+                    >
+                </div>
+
+                <div class="mb-3">
+                    <label for="instrucciones" class="form-label">Instrucciones</label>
+                    <textarea
+                        class="form-control"
+                        id="instrucciones"
+                        formControlName="instrucciones"
+                        rows="6"
+                        placeholder="Pasos para preparar la receta"
+                    ></textarea>
+                </div>
+
+                <div class="d-flex gap-2">
+                    <button
+                        (click)="guardarCambios()"
+                        class="btn btn-success"
+                        type="button"
+                    >
+                        Guardar cambios
+                    </button>
+                    <button
+                        (click)="cancelarEdicion()"
+                        class="btn btn-secondary"
+                        type="button"
+                    >
+                        Cancelar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="my-5 py-5"></div>
+    <!-- carga -->
+    <div *ngIf="!receta && !errorMsg" class="text-center">
+        <p>Cargando receta...</p>
+    </div>
+</main>

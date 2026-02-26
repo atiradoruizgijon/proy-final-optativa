@@ -1,27 +1,39 @@
 import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
 import { Kookia } from './kookia/kookia';
 import { Recetas } from './recetas/recetas';
+import { RecetaDetalle } from './receta-detalle/receta-detalle';
 import { Planificacion } from './planificacion/planificacion';
 import { Inicio } from './inicio/inicio';
+import { Login } from './login/login';
+import { ReactiveFormsModule } from '@angular/forms';
+import { Register } from './register/register';
+import { JwtInterceptor } from './jwt-interceptor';
 
 @NgModule({
   declarations: [
     App,
     Kookia,
     Recetas,
+    RecetaDetalle,
     Planificacion,
-    Inicio
+    Inicio,
+    Login,
+    Register
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
   ],
   bootstrap: [App]
 })

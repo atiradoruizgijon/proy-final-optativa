@@ -38,9 +38,13 @@ public class JwtTokenProvider {
 
     public String generateToken(Authentication authentication) {
         // TODO Auto-generated method stub
-        // Aquí es donde se genera el token JWT usando la librería que hayamos elegido, como jjwt o java-jwt. 
+        // Aquí es donde se genera el token JWT usando la librería que hayamos elegido, como jjwt o java-jwt.
         // El token debe incluir el nombre de usuario y la fecha de expiración, y debe ser firmado con la clave secreta.
         Usuario user = (Usuario) authentication.getPrincipal();
+        return generateToken(user);
+    }
+
+    public String generateToken(Usuario user) {
         log.info("Generando token JWT para el usuario: " + user.getUsername());
 
         return Jwts.builder()

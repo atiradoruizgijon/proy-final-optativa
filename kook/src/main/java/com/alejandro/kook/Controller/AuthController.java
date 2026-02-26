@@ -6,6 +6,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.alejandro.kook.Dto.LoginRequest;
 import com.alejandro.kook.Dto.LoginResponse;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 
 @RestController
+@CrossOrigin("*")
 public class AuthController {
     @Autowired
     private UsuarioServiceImpl usuarioService;
@@ -27,8 +29,10 @@ public class AuthController {
     private JwtTokenProvider jwtTokenProvider;
 
     @PostMapping("/auth/register")
-    public Usuario save(@RequestBody UsuarioDTO usuarioDTO) {
-        return this.usuarioService.save(usuarioDTO);
+    public LoginResponse save(@RequestBody UsuarioDTO usuarioDTO) {
+        Usuario user = this.usuarioService.save(usuarioDTO);
+        String token = this.jwtTokenProvider.generateToken(user);
+        return new LoginResponse(user.getUsername(), user.getAuthorities().stream().map(GrantedAuthority::getAuthority).toList(), token);
     }
     
     @PostMapping("/auth/login")

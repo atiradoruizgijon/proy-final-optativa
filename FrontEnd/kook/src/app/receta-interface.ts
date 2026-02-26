@@ -4,5 +4,6 @@ export interface recetaInterface {
     titulo: string;
     descripcion: string;
     instrucciones: string;
+    imagen_url: string;
     fecha: string;
 }

@@ -1,5 +1,6 @@
 package com.alejandro.kook.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -19,17 +20,18 @@ public class RecetaServiceImpl implements RecetaService {
     }
 
     @Override
-    public void crearReceta(RecetaDTO recetaDTO) {
+    public Receta crearReceta(RecetaDTO recetaDTO) {
         // TODO Auto-generated method stub
         Receta nuevaReceta = new Receta();
 
         nuevaReceta.setTitulo(recetaDTO.getTitulo());
         nuevaReceta.setDescripcion(recetaDTO.getDescripcion());
         nuevaReceta.setInstrucciones(recetaDTO.getInstrucciones());
-        nuevaReceta.setFecha(recetaDTO.getFecha());
+        // Si la fecha es null, establecer la fecha actual
+        nuevaReceta.setFecha(recetaDTO.getFecha() != null ? recetaDTO.getFecha() : LocalDate.now());
         nuevaReceta.setImagenUrl(recetaDTO.getImagenUrl());
 
-        recetaRepository.save(nuevaReceta);
+        return recetaRepository.save(nuevaReceta);
     }
 
     @Override
