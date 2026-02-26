@@ -6,7 +6,6 @@
                 <a routerLink="inicio" class="btn btn-outline-light fs-4">Inicio</a>
                 <a routerLink="recetas" class="btn btn-outline-light fs-4">Recetas</a>
                 <a routerLink="kookia" class="btn btn-outline-light fs-4">KookIA</a>
-                <a routerLink="planificacion" class="btn btn-outline-light fs-4">Planificación</a>
             </nav>
             <nav class="navbar justify-content-center gap-3">
                 <span class="text-white" *ngIf="isLoggedIn">{{ username }}</span>
@@ -18,6 +17,6 @@
     </div>
 </header>
 <router-outlet></router-outlet>
-<footer class="bg-success text-center text-white p-3 mt-4 fixed-bottom" *ngIf="!isLoginOrRegister">
+<!-- <footer class="bg-success text-center text-white p-3 mt-4 fixed-bottom" *ngIf="!isLoginOrRegister">
     <p>&copy; 2026 KookIA. Todos los derechos reservados.</p>
-</footer>
+</footer> -->

@@ -19,8 +19,6 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: kook
-    volumes:
-      - ./db:/var/lib/mysql
     ports:
     # En la WSL cambio los puertos porque estan en conflicto frente a los de la WSL
       - 3306:3306
@@ -31,5 +29,3 @@ services:
     # En la WSL cambio los puertos porque estan en conflicto frente a los de la WSL, en este caso el 80 de Apache
     ports:
       - 80:80
-    volumes:
-      - ./Frontend/kook/:/usr/share/nginx/html/

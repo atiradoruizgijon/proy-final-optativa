@@ -1,16 +1,15 @@
 import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
 import { Kookia } from './kookia/kookia';
 import { Recetas } from './recetas/recetas';
 import { RecetaDetalle } from './receta-detalle/receta-detalle';
-import { Planificacion } from './planificacion/planificacion';
 import { Inicio } from './inicio/inicio';
 import { Login } from './login/login';
-import { ReactiveFormsModule } from '@angular/forms';
 import { Register } from './register/register';
 import { JwtInterceptor } from './jwt-interceptor';
 
@@ -20,7 +19,6 @@ import { JwtInterceptor } from './jwt-interceptor';
     Kookia,
     Recetas,
     RecetaDetalle,
-    Planificacion,
     Inicio,
     Login,
     Register
@@ -29,6 +27,7 @@ import { JwtInterceptor } from './jwt-interceptor';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    FormsModule,
     HttpClientModule
   ],
   providers: [

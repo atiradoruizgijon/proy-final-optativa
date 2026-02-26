@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { Recetas } from './recetas/recetas';
 import { RecetaDetalle } from './receta-detalle/receta-detalle';
-import { Planificacion } from './planificacion/planificacion';
 import { Inicio } from './inicio/inicio';
 import { Kookia } from './kookia/kookia';
 import { Login } from './login/login';
@@ -23,11 +22,6 @@ const routes: Routes = [
   {
     path: 'receta/:id',
     component: RecetaDetalle,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'planificacion',
-    component: Planificacion,
     canActivate: [AuthGuard]
   },
   {

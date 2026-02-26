@@ -22,9 +22,17 @@ export class Register {
   constructor(private loginService: LoginService, private router: Router) {}
 
   registroUsuario() {
-    console.log("pasa");
     this.errorMsg = ''; // limpiar errores previos
-    if (this.formLogin.value.password1 == this.formLogin.value.password2) {
+    if (this.formLogin.value.password1 !== this.formLogin.value.password2) {
+      this.errorMsg = "Las contraseñas no coinciden.";
+      return;
+    }
+
+    if (!this.formLogin.value.username || !this.formLogin.value.email ||
+        !this.formLogin.value.password1 || !this.formLogin.value.password2) {
+      this.errorMsg = "Por favor completa todos los campos.";
+      return;
+    }
       this.loginService.registro(
         {
           username: this.formLogin.value.username ?? '',
@@ -41,11 +49,19 @@ export class Register {
         },
         (error) => {
           console.error('Registration failed:', error);
-          this.errorMsg = 'Error en el registro: Verifica que el usuario o email no estén en uso';
+          console.error('Status:', error.status);
+          console.error('StatusText:', error.statusText);
+
+          if (error.status === 400 || error.status === 409) {
+            this.errorMsg = 'El usuario o email ya está en uso. Por favor elige otro.';
+          } else if (error.status === 500) {
+            this.errorMsg = 'Error del servidor. Por favor intenta más tarde.';
+          } else if (error.status === 0 || !error.status) {
+            this.errorMsg = 'No se puede conectar al servidor. Verifica tu conexión de internet.';
+          } else {
+            this.errorMsg = `Error en el registro: ${error.statusText || 'Error desconocido'}`;
+          }
         }
       );
-    } else {
-      this.errorMsg = "Las contraseñas no coinciden.";
-    }
   }
 }

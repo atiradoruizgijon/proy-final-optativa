@@ -58,7 +58,7 @@ public class SecurityConfiguration {
         http.cors(cors -> cors.configurationSource(corsConfigurationSource()));
 
         http.authorizeHttpRequests(authz -> authz
-            .requestMatchers("/auth/**", "/subir-imagen").permitAll() // permitimos el acceso a todas las rutas que empiecen por /auth/ y /subir-imagen sin necesidad de autenticación
+            .requestMatchers("/auth/**", "/subir-imagen", "/chat/**", "/swagger-ui/**", "/v3/api-docs/**").permitAll() // permitimos el acceso a todas las rutas de Swagger, auth, chat y subir-imagen sin necesidad de autenticación
             .anyRequest().authenticated()); // para cualquier otra ruta, requerimos que el usuario esté autenticado.
 
         http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class); // Agregamos nuestro filtro de JWT antes del filtro de autenticación de Spring Security, para que se ejecute antes y pueda validar el token JWT en cada petición.
