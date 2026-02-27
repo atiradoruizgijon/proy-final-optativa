@@ -1,6 +1,6 @@
 # Stage 1: Build the application
 # Uso una imagen base con JDK para compilar la aplicación
-FROM eclipse-temurin:23-jdk AS builder
+FROM eclipse-temurin:21-jdk AS builder
 
 # Set the working directory
 # Elijo un directorio de trabajo dentro del contenedor
@@ -20,7 +20,7 @@ RUN ./mvnw clean package -DskipTests
 
 # Stage 2: Run the application
 # Uso el JRE para ejecutar la aplicación, el anterior era el JDK para compilarla
-FROM eclipse-temurin:23-jre
+FROM eclipse-temurin:21-jre
 
 # Set the working directory
 # Elijo un directorio de trabajo dentro del contenedor para ejecutar la aplicación.
