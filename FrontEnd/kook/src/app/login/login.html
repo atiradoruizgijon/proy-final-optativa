@@ -1,5 +1,5 @@
 <main class="container justify-content-center align-items-center row m-auto mt-5">
-    <h3 class="bg-danger text-light rounded-2 p-3 text-center w-50" *ngIf="errorMsg.length > 0">{{errorMsg}}</h3>
+    <h3 class="bg-danger text-light rounded-2 p-3 text-center w-100 my-3" *ngIf="errorMsg.length > 0">{{errorMsg}}</h3>
     <form [formGroup]="formLogin" (ngSubmit)="submit()" class="col-lg-5">
         <h1 class="mb-3">Inicia Sesión</h1>
         <div class="mb-3">

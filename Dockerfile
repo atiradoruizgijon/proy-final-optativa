@@ -10,7 +10,7 @@ WORKDIR /app
 # Con este COPY, se copian todos los archivos del
 # directorio actual (donde está el Dockerfile) al directorio de trabajo en el contenedor.
 # Esto incluye el código fuente, archivos de configuración, y cualquier otro recurso necesario para construir la aplicación.
-COPY . .
+COPY kook .
 
 # Given permissions to mvnw
 RUN chmod +x mvnw

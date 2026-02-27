@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { LoginService } from '../login-service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -18,7 +18,7 @@ export class Login implements OnInit {
       password: new FormControl('', { nonNullable: true })
     });
 
-  constructor(private fb: FormBuilder, private loginService: LoginService, private router: Router) {}
+  constructor(private fb: FormBuilder, private loginService: LoginService, private router: Router, private cdr: ChangeDetectorRef) {}
 
   submit() {
     this.errorMsg = ''; // limpiar mensajes de error previos
@@ -53,6 +53,7 @@ export class Login implements OnInit {
         }
       }
     );
+    this.cdr.detectChanges();
   }
 
   ngOnInit(): void {
