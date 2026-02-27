@@ -1,0 +1,42 @@
+services:
+  - name: mariadb
+    type: web        # Render requiere "web" aunque sea base de datos en contenedor Docker
+    env: docker
+    image: mariadb:latest
+    plan: free
+    envVars:
+      - key: MYSQL_ROOT_PASSWORD
+        value: root
+      - key: MYSQL_DATABASE
+        value: kook
+    ports:
+      - port: 3306
+
+  - name: kook
+    type: web
+    env: docker
+    dockerfilePath: ./Dockerfile   # <-- ruta a tu Dockerfile
+    plan: free
+    envVars:
+      - key: SPRING_DATASOURCE_URL
+        value: jdbc:mariadb://mariadb:3306/kook
+      - key: SPRING_DATASOURCE_USERNAME
+        value: root
+      - key: SPRING_DATASOURCE_PASSWORD
+        value: root
+      - key: SPRING_DATASOURCE_DRIVER-CLASS-NAME
+        value: org.mariadb.jdbc.Driver
+    # Nota: Render no soporta depends_on; la app debe manejar reintentos hasta que MariaDB esté lista
+    ports:
+      - port: 8080
+
+  - name: nginx
+    type: web
+    env: docker
+    image: nginx:latest
+    plan: free
+    mounts:
+      - source: ./Frontend/kook/dist/kook/browser/
+        target: /usr/share/nginx/html/
+    ports:
+      - port: 80
